@@ -120,7 +120,7 @@ public class option_item implements Listener {
         }
     }
 
-    public int file_out(UUID playerUUID, String path){
+    public static int file_out(UUID playerUUID, String path){
         File playerFile = new File("PD/" + playerUUID + ".yml");
         int playerD = 0;
         try {
