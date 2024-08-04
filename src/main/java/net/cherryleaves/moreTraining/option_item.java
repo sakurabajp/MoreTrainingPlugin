@@ -140,6 +140,7 @@ public class option_item implements Listener {
         menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Fishing")))));
         menu1.setItem(14, setItemDisplayName(Material.GOLDEN_BOOTS, "ウォーキングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Walking")))));
         menu1.setItem(15, setItemDisplayName(Material.BREWING_STAND, "アルケミスティングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Brewing")))));
+        menu1.setItem(31, setItemDisplayName(Material.OAK_SIGN, "ショップ", new ArrayList<>(List.of("実装はかなり先だろう..."))));
         if (p.getScoreboardTags().contains("Tag_SoundMenuName_on")) {
             menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_on, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
         }
