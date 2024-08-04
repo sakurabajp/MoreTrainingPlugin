@@ -22,7 +22,7 @@ import java.util.UUID;
 
 public final class MoreTraining extends JavaPlugin implements Listener {
 
-    public ArrayList<Integer> MiningCount = new ArrayList<Integer>();
+    public ArrayList<Integer> MiningCount = new ArrayList<>();
 
     @Override
     public void onEnable() {
