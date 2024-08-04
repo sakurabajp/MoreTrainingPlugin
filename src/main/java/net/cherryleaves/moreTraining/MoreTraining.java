@@ -1,10 +1,7 @@
 package net.cherryleaves.moreTraining;
 
 import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -13,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,6 +56,12 @@ public final class MoreTraining extends JavaPlugin implements Listener {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if (p.getScoreboardTags().contains("Tag_TextMenuName_off") || p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
+            p.addScoreboardTag("Tag_TextMenuName_on");
+        }
+        if (p.getScoreboardTags().contains("Tag_SoundMenuName_off") || p.getScoreboardTags().contains("Tag_TSoundMenuName_on")) {
+            p.addScoreboardTag("Tag_SoundMenuName_on");
         }
     }
 
