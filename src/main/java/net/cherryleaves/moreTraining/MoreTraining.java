@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +70,12 @@ public final class MoreTraining extends JavaPlugin implements Listener {
         UUID pu = p.getUniqueId();
         Material b = e.getBlock().getType();
         FilePath(p, pu,"Mining",1);
+        if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
+            p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.0f);
+        }
+        if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
+            p.sendMessage("スコア" + ChatColor.AQUA + "+" + 1);
+        }
     }
 
     @EventHandler

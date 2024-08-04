@@ -72,14 +72,12 @@ public class option_item implements Listener {
             if(i.getType().equals(Material.MAP)){
                 p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 1.0f, 1.0f);
                 if(p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
-                    p.sendMessage("あああああああ");
                     menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_on");
                     p.addScoreboardTag("Tag_TextMenuName_off");
                     menuGUI(p);
                 }
                 else if(p.getScoreboardTags().contains("Tag_TextMenuName_off")) {
-                    p.sendMessage("いいいいいいいいい");
                     menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_off");
                     p.addScoreboardTag("Tag_TextMenuName_on");
