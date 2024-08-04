@@ -57,13 +57,15 @@ public class option_item implements Listener {
                 if(i.getItemMeta().getDisplayName().equals(SoundMenuName_on)){
                     menu1.clear(30);
                     menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_off, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
+                    p.addScoreboardTag("Tag_SoundMenuName_on");
                 }
                 if(i.getItemMeta().getDisplayName().equals(SoundMenuName_off)){
                     menu1.clear(30);
                     menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_on, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
+                    p.addScoreboardTag("Tag_SoundMenuName_off");
                 }
                 else{
-                    // ここに後でタグ付ける
+                    p.addScoreboardTag("Tag_SoundMenuName_on");
                 }
             }
             if(i.getType().equals(Material.MAP)){
@@ -71,13 +73,15 @@ public class option_item implements Listener {
                 if(i.getItemMeta().getDisplayName().equals(TextMenuName_on)) {
                     menu1.clear(32);
                     menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_off, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
+                    p.addScoreboardTag("Tag_TextMenuName_on");
                 }
                 if(i.getItemMeta().getDisplayName().equals(TextMenuName_off)) {
                     menu1.clear(32);
                     menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_on, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
+                    p.addScoreboardTag("Tag_TextMenuName_off");
                 }
                 else{
-                    // ここに後でタグ付ける
+                    p.addScoreboardTag("Tag_TextMenuName_on");
                 }
             }
         }
@@ -127,13 +131,23 @@ public class option_item implements Listener {
         return playerD;
     }
 
-    public void menuGUI(Player p){
+    public void menuGUI(Player p) {
         menu1.setItem(11, setItemDisplayName(Material.STONE_SWORD, "コンバットスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Combat")))));
         menu1.setItem(12, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Mining")))));
         menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Fishing")))));
         menu1.setItem(14, setItemDisplayName(Material.GOLDEN_BOOTS, "ウォーキングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Walking")))));
         menu1.setItem(15, setItemDisplayName(Material.BREWING_STAND, "アルケミスティングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Brewing")))));
-        menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, "サウンド", new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
-        menu1.setItem(32, setItemDisplayName(Material.MAP, "テキストチャット", new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
+        if (p.getScoreboardTags().contains("Tag_SoundMenuName_on")) {
+            menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_on, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
+        }
+        else if(p.getScoreboardTags().contains("Tag_SoundMenuName_off")){
+            menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_off, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
+        }
+        if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
+            menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_on, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
+        }
+        else if(p.getScoreboardTags().contains("Tag_TextMenuName_off")){
+            menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_off, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
+        }
     }
 }
