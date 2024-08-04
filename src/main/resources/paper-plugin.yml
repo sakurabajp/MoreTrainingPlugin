@@ -1,0 +1,4 @@
+name: MoreTraining
+version: '1.0-SNAPSHOT'
+main: net.cherryleaves.moreTraining.MoreTraining
+api-version: '1.21'
