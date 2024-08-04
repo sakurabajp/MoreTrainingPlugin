@@ -54,16 +54,16 @@ public class option_item implements Listener {
             if(i.getType().equals(Material.JUKEBOX)) {
                 p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 1.0f, 1.0f);
                 if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
-                    menu1.clear(30);
-                    menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_off, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
-                    p.addScoreboardTag("Tag_SoundMenuName_off");
+                    menu1.clear();
                     p.removeScoreboardTag("Tag_SoundMenuName_on");
+                    p.addScoreboardTag("Tag_SoundMenuName_off");
+                    menuGUI(p);
                 }
-                if(p.getScoreboardTags().contains("Tag_SoundMenuName_off")){
-                    menu1.clear(30);
-                    menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_on, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
-                    p.addScoreboardTag("Tag_SoundMenuName_on");
+                else if(p.getScoreboardTags().contains("Tag_SoundMenuName_off")){
+                    menu1.clear();
                     p.removeScoreboardTag("Tag_SoundMenuName_off");
+                    p.addScoreboardTag("Tag_SoundMenuName_on");
+                    menuGUI(p);
                 }
                 else{
                     p.addScoreboardTag("Tag_SoundMenuName_on");
@@ -72,16 +72,18 @@ public class option_item implements Listener {
             if(i.getType().equals(Material.MAP)){
                 p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 1.0f, 1.0f);
                 if(p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
-                    menu1.clear(32);
-                    menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_off, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
-                    p.addScoreboardTag("Tag_TextMenuName_off");
+                    p.sendMessage("あああああああ");
+                    menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_on");
+                    p.addScoreboardTag("Tag_TextMenuName_off");
+                    menuGUI(p);
                 }
-                if(p.getScoreboardTags().contains("Tag_TextMenuName_off")) {
-                    menu1.clear(32);
-                    menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_on, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
-                    p.addScoreboardTag("Tag_TextMenuName_on");
+                else if(p.getScoreboardTags().contains("Tag_TextMenuName_off")) {
+                    p.sendMessage("いいいいいいいいい");
+                    menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_off");
+                    p.addScoreboardTag("Tag_TextMenuName_on");
+                    menuGUI(p);
                 }
                 else{
                     p.addScoreboardTag("Tag_TextMenuName_on");
