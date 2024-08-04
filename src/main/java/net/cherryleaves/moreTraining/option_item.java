@@ -32,7 +32,7 @@ public class option_item implements Listener {
         return option;
     }
 
-    Inventory menu1 = Bukkit.createInventory(null, 45, ChatColor.DARK_AQUA + "メニュー <詳しく知りたい場合は各アイテムをクリック> ");
+    Inventory menu1 = Bukkit.createInventory(null, 45, ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>");
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent e){
@@ -74,10 +74,10 @@ public class option_item implements Listener {
         }
         if (Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー")) {
             menu1.setItem(11, setItemDisplayName(Material.STONE_SWORD, "コンバットスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Combat")))));
-            menu1.setItem(12, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of())));
-            menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of())));
-            menu1.setItem(14, setItemDisplayName(Material.GOLDEN_BOOTS, "ウォーキングスコア", new ArrayList<>(List.of())));
-            menu1.setItem(15, setItemDisplayName(Material.BREWING_STAND, "アルケミスティングスコア", new ArrayList<>(List.of(""))));
+            menu1.setItem(12, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Mining")))));
+            menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Fishing")))));
+            menu1.setItem(14, setItemDisplayName(Material.GOLDEN_BOOTS, "ウォーキングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Walking")))));
+            menu1.setItem(15, setItemDisplayName(Material.BREWING_STAND, "アルケミスティングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Brewing")))));
             menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, "サウンド", new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));
             menu1.setItem(32, setItemDisplayName(Material.MAP, "テキストチャット", new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
             p.openInventory(menu1);
