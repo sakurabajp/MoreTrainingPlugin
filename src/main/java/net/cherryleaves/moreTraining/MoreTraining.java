@@ -57,10 +57,10 @@ public final class MoreTraining extends JavaPlugin implements Listener {
                 e.printStackTrace();
             }
         }
-        if (p.getScoreboardTags().contains("Tag_TextMenuName_off") || p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
+        if (!p.getScoreboardTags().contains("Tag_TextMenuName_off") || p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
             p.addScoreboardTag("Tag_TextMenuName_on");
         }
-        if (p.getScoreboardTags().contains("Tag_SoundMenuName_off") || p.getScoreboardTags().contains("Tag_TSoundMenuName_on")) {
+        if (!p.getScoreboardTags().contains("Tag_SoundMenuName_off") || p.getScoreboardTags().contains("Tag_TSoundMenuName_on")) {
             p.addScoreboardTag("Tag_SoundMenuName_on");
         }
     }
