@@ -20,7 +20,11 @@ import java.util.UUID;
 
 public final class MoreTraining extends JavaPlugin implements Listener {
 
-    public ArrayList<Integer> MiningCount = new ArrayList<>();
+    public static ArrayList<Integer> MiningCount = new ArrayList<>();
+    public static ArrayList<Integer> CombatCount = new ArrayList<>();
+    public static ArrayList<Integer> FishingCount = new ArrayList<>();
+    public static ArrayList<Integer> WalkingCount = new ArrayList<>();
+    public static ArrayList<Integer> BrewingCount = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -33,6 +37,10 @@ public final class MoreTraining extends JavaPlugin implements Listener {
 
     public void list_in(){
         MiningCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
+        CombatCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
+        FishingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
+        WalkingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
+        BrewingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
     }
 
     @Override
@@ -85,6 +93,12 @@ public final class MoreTraining extends JavaPlugin implements Listener {
             double damage = e.getDamage();
             UUID pu = p.getUniqueId();
             FilePath(p, pu,"Combat", (int) damage);
+            if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
+                p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 2.0f);
+            }
+            if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
+                p.sendMessage("スコア" + ChatColor.AQUA + "+" + (int) damage + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Mining") + ")");
+            }
         }
     }
 
@@ -96,20 +110,10 @@ public final class MoreTraining extends JavaPlugin implements Listener {
             int BBI = playerData.getInt(path);
             playerData.set(path, BBI + number);
             if (path.equals("Mining")) {
-                if (playerData.get("MiningLevel") == null){
-                    playerData.set("MiningLevel", 0);
-                }
-                int l = playerData.getInt("MiningLevel");
-                for (int q = 1; q <= MiningCount.size(); q++) {
-                    if (l == MiningCount.size() - q){
-                        if (playerData.getInt("Mining") >= MiningCount.get(MiningCount.size() - q)) {
-                            playerData.set("MiningLevel", l + 1);
-                            p.sendMessage("マイニングスコアが" + ChatColor.AQUA + (MiningCount.get(MiningCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
-                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-                        }
-                    }
-                }
-                // MiningLevel(p);
+                new LevelRoot().MiningScoreLevelCount(playerData, p);
+            }
+            if (path.equals("Combat")) {
+                new LevelRoot().CombatScoreLevelCount(playerData, p);
             }
             playerData.save(pf);
         }
