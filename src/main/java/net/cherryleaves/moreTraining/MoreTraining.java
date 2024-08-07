@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -79,10 +80,12 @@ public final class MoreTraining extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void Attack(PrePlayerAttackEntityEvent e) {
-        Player p = e.getPlayer();
-        UUID pu = p.getUniqueId();
-        FilePath(p, pu,"Combat",1);
+    public void Attack(EntityDamageByEntityEvent e) {
+        if(e.getDamager() instanceof Player p){
+            double damage = e.getDamage();
+            UUID pu = p.getUniqueId();
+            FilePath(p, pu,"Combat", (int) damage);
+        }
     }
 
 
@@ -92,9 +95,21 @@ public final class MoreTraining extends JavaPlugin implements Listener {
             FileConfiguration playerData = YamlConfiguration.loadConfiguration(pf);
             int BBI = playerData.getInt(path);
             playerData.set(path, BBI + number);
-            if (MiningCount.contains(BBI + number) && path.equals("Mining")) {
-                p.sendMessage("マイニングスコアが" + ChatColor.AQUA + (BBI + number) + ChatColor.WHITE + "を達成しました！");
-                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+            if (path.equals("Mining")) {
+                if (playerData.get("MiningLevel") == null){
+                    playerData.set("MiningLevel", 0);
+                }
+                int l = playerData.getInt("MiningLevel");
+                for (int q = 1; q <= MiningCount.size(); q++) {
+                    if (l == MiningCount.size() - q){
+                        if (playerData.getInt("Mining") >= MiningCount.get(MiningCount.size() - q)) {
+                            playerData.set("MiningLevel", l + 1);
+                            p.sendMessage("マイニングスコアが" + ChatColor.AQUA + (MiningCount.get(MiningCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
+                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                        }
+                    }
+                }
+                // MiningLevel(p);
             }
             playerData.save(pf);
         }
