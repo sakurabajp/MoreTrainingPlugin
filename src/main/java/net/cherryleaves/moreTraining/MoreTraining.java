@@ -97,7 +97,7 @@ public final class MoreTraining extends JavaPlugin implements Listener {
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 2.0f);
             }
             if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
-                p.sendMessage("スコア" + ChatColor.AQUA + "+" + (int) damage + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Mining") + ")");
+                p.sendMessage("スコア" + ChatColor.RED + "+" + (int) damage + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Combat") + ")");
             }
         }
     }
