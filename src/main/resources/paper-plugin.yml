@@ -2,3 +2,7 @@ name: MoreTraining
 version: '1.0-SNAPSHOT'
 main: net.cherryleaves.moreTraining.MoreTraining
 api-version: '1.21'
+commands:
+  status:
+    description: "Description of the status command"
+    usage: "/status <Player>"

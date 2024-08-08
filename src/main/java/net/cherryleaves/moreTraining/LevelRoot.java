@@ -34,7 +34,7 @@ public class LevelRoot {
             if (l == CombatCount.size() - q){
                 if (playerData.getInt("Combat") >= CombatCount.get(CombatCount.size() - q)) {
                     playerData.set("CombatLevel", l + 1);
-                    p.sendMessage("マイニングスコアが" + ChatColor.AQUA + (CombatCount.get(CombatCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
+                    p.sendMessage("コンバットスコアが" + ChatColor.AQUA + (CombatCount.get(CombatCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
                     p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 }
             }
