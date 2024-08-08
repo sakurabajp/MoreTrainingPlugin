@@ -1,6 +1,5 @@
 package net.cherryleaves.moreTraining;
 
-import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
