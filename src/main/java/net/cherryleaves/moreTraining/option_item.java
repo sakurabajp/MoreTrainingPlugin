@@ -33,7 +33,6 @@ public class option_item implements Listener {
         return option;
     }
 
-    Inventory menu1 = Bukkit.createInventory(null, 45, ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>");
     String SoundMenuName_on = "サウンド " + ChatColor.GREEN + "on";
     String SoundMenuName_off = "サウンド " + ChatColor.RED + "off";
     String TextMenuName_on = "チャット " + ChatColor.GREEN + "on";
@@ -49,18 +48,16 @@ public class option_item implements Listener {
         if(Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー")){
             e.setCancelled(true);
         }
-        else if(e.getInventory().equals(menu1)) {
+        else if(e.getView().getTitle().equals(ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>")) {
             e.setCancelled(true);
             if(i.getType().equals(Material.JUKEBOX)) {
                 p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 1.0f, 1.0f);
                 if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
-                    menu1.clear();
                     p.removeScoreboardTag("Tag_SoundMenuName_on");
                     p.addScoreboardTag("Tag_SoundMenuName_off");
                     menuGUI(p);
                 }
                 else if(p.getScoreboardTags().contains("Tag_SoundMenuName_off")){
-                    menu1.clear();
                     p.removeScoreboardTag("Tag_SoundMenuName_off");
                     p.addScoreboardTag("Tag_SoundMenuName_on");
                     menuGUI(p);
@@ -72,13 +69,11 @@ public class option_item implements Listener {
             if(i.getType().equals(Material.MAP)){
                 p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 1.0f, 1.0f);
                 if(p.getScoreboardTags().contains("Tag_TextMenuName_on")) {
-                    menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_on");
                     p.addScoreboardTag("Tag_TextMenuName_off");
                     menuGUI(p);
                 }
                 else if(p.getScoreboardTags().contains("Tag_TextMenuName_off")) {
-                    menu1.clear();
                     p.removeScoreboardTag("Tag_TextMenuName_off");
                     p.addScoreboardTag("Tag_TextMenuName_on");
                     menuGUI(p);
@@ -116,7 +111,6 @@ public class option_item implements Listener {
         }
         if (Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー")) {
             menuGUI(p);
-            p.openInventory(menu1);
         }
     }
 
@@ -135,6 +129,9 @@ public class option_item implements Listener {
     }
 
     public void menuGUI(Player p) {
+        Inventory menu1 = Bukkit.createInventory(null, 45, ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>");
+        menu1.clear();
+        p.openInventory(menu1);
         menu1.setItem(11, setItemDisplayName(Material.STONE_SWORD, "コンバットスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Combat")))));
         menu1.setItem(12, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Mining")))));
         menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p.getUniqueId(), "Fishing")))));
