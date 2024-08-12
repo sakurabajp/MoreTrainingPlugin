@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,7 +42,7 @@ public final class MoreTraining extends JavaPlugin implements Listener{
     public void list_in() {
         MiningCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
         CombatCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
-        FishingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
+        FishingCount.addAll(Arrays.asList(10, 50, 100, 200, 500, 1000, 1500, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
     }
 
     @Override
@@ -103,6 +104,22 @@ public final class MoreTraining extends JavaPlugin implements Listener{
         }
     }
 
+    @EventHandler
+    public void Fishing(PlayerFishEvent e) {
+        // 釣りが成功したとき
+        if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
+            Player p = e.getPlayer();
+            UUID pu = p.getUniqueId();
+            FilePath(p, pu,"Fishing", 1);
+            if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
+                p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 2.0f);
+            }
+            if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
+                p.sendMessage("スコア" + ChatColor.GREEN + "+" + 1 + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Fishing") + ")");
+            }
+        }
+    }
+
 
     public void FilePath(Player p, UUID u, String path, int number/*, List<Arrays> li*/){
         File pf = new File("PD/" + u + ".yml");
@@ -115,6 +132,9 @@ public final class MoreTraining extends JavaPlugin implements Listener{
             }
             if (path.equals("Combat")) {
                 new LevelRoot().CombatScoreLevelCount(playerData, p);
+            }
+            if (path.equals("Fishing")) {
+                new LevelRoot().FishingScoreLevelCount(playerData, p);
             }
             playerData.save(pf);
         }

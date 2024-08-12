@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import static net.cherryleaves.moreTraining.MoreTraining.CombatCount;
 import static net.cherryleaves.moreTraining.MoreTraining.MiningCount;
+import static net.cherryleaves.moreTraining.MoreTraining.FishingCount;
 
 public class LevelRoot {
     public void MiningScoreLevelCount(FileConfiguration playerData, Player p){
@@ -34,7 +35,23 @@ public class LevelRoot {
             if (l == CombatCount.size() - q){
                 if (playerData.getInt("Combat") >= CombatCount.get(CombatCount.size() - q)) {
                     playerData.set("CombatLevel", l + 1);
-                    p.sendMessage("コンバットスコアが" + ChatColor.AQUA + (CombatCount.get(CombatCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
+                    p.sendMessage("コンバットスコアが" + ChatColor.RED + (CombatCount.get(CombatCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
+                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                }
+            }
+        }
+    }
+
+    public void FishingScoreLevelCount(FileConfiguration playerData, Player p){
+        if (playerData.get("FishingLevel") == null){
+            playerData.set("FishingLevel", 0);
+        }
+        int l = playerData.getInt("FishingLevel");
+        for (int q = 1; q <= FishingCount.size(); q++) {
+            if (l == FishingCount.size() - q){
+                if (playerData.getInt("Fishing") >= FishingCount.get(FishingCount.size() - q)) {
+                    playerData.set("FishingLevel", l + 1);
+                    p.sendMessage("フィッシングスコアが" + ChatColor.GREEN + (FishingCount.get(FishingCount.size() - q)) + ChatColor.WHITE + "を達成しました！");
                     p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 }
             }
