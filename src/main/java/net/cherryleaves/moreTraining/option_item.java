@@ -133,10 +133,10 @@ public class option_item implements Listener {
         menu1.clear();
         p.openInventory(menu1);
         menu1.setItem(11, setItemDisplayName(Material.STONE_SWORD, "コンバットスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Combat")))));
-        menu1.setItem(12, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Mining")))));
-        menu1.setItem(13, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Fishing")))));
-        menu1.setItem(14, setItemDisplayName(Material.GOLDEN_BOOTS, "ウォーキングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Walking")))));
-        menu1.setItem(15, setItemDisplayName(Material.BREWING_STAND, "アルケミスティングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Brewing")))));
+        menu1.setItem(12, setItemDisplayName(Material.GRAY_STAINED_GLASS, " ", new ArrayList<>(List.of(" "))));
+        menu1.setItem(13, setItemDisplayName(Material.STONE_PICKAXE, "マイニングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Mining")))));
+        menu1.setItem(14, setItemDisplayName(Material.GRAY_STAINED_GLASS, " ", new ArrayList<>(List.of(" "))));
+        menu1.setItem(15, setItemDisplayName(Material.FISHING_ROD, "フィッシングスコア", new ArrayList<>(List.of("現在のポイントは→" + file_out(p2.getUniqueId(), "Fishing")))));
         menu1.setItem(31, setItemDisplayName(Material.OAK_SIGN, "ショップ", new ArrayList<>(List.of("実装はかなり先だろう..."))));
         if (p2.getScoreboardTags().contains("Tag_SoundMenuName_on")) {
             menu1.setItem(30, setItemDisplayName(Material.JUKEBOX, SoundMenuName_on, new ArrayList<>(List.of("スコアが加算された時にサウンドを鳴らす"))));

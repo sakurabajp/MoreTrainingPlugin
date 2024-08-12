@@ -28,8 +28,6 @@ public final class MoreTraining extends JavaPlugin implements Listener{
     public static ArrayList<Integer> MiningCount = new ArrayList<>();
     public static ArrayList<Integer> CombatCount = new ArrayList<>();
     public static ArrayList<Integer> FishingCount = new ArrayList<>();
-    public static ArrayList<Integer> WalkingCount = new ArrayList<>();
-    public static ArrayList<Integer> BrewingCount = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -44,8 +42,6 @@ public final class MoreTraining extends JavaPlugin implements Listener{
         MiningCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
         CombatCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
         FishingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
-        WalkingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
-        BrewingCount.addAll(Arrays.asList(100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000, 100000));
     }
 
     @Override
