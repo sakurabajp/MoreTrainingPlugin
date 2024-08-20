@@ -45,6 +45,9 @@ public class option_item implements Listener {
         if(Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー") && !p.getGameMode().equals(GameMode.CREATIVE)){
             e.setCancelled(true);
         }
+        else if(e.getView().getTitle().equals(ChatColor.DARK_AQUA + "ショップ")){
+            e.setCancelled(true);
+        }
         else if(e.getView().getTitle().equals(ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>")) {
             e.setCancelled(true);
             if(i.getType().equals(Material.JUKEBOX)) {
@@ -78,6 +81,9 @@ public class option_item implements Listener {
                 else{
                     p.addScoreboardTag("Tag_TextMenuName_on");
                 }
+            }
+            else if (i.getType().equals(Material.OAK_SIGN)){
+                shopGUI(p, p);
             }
         }
     }
@@ -147,5 +153,11 @@ public class option_item implements Listener {
         else if(p2.getScoreboardTags().contains("Tag_TextMenuName_off")){
             menu1.setItem(32, setItemDisplayName(Material.MAP, TextMenuName_off, new ArrayList<>(List.of("スコアが加算された時にチャットを送信する"))));
         }
+    }
+    public void shopGUI(Player p, Player p2) {
+        Inventory menu2 = Bukkit.createInventory(null, 45, ChatColor.DARK_AQUA + "ショップ");
+        menu2.clear();
+        p.openInventory(menu2);
+        menu2.setItem(0, setItemDisplayName(Material.WHITE_CONCRETE, "Nothing Effect", new ArrayList<>(List.of(ChatColor.GREEN + "解放済み"))));
     }
 }
