@@ -20,6 +20,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import javax.tools.Tool;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -36,6 +37,7 @@ public final class MoreTraining extends JavaPlugin implements Listener{
         Bukkit.getPluginManager().registerEvents(this, this);
         Bukkit.getPluginManager().registerEvents(new option_item(), this);
         list_in();
+        new BlockList().list_in();
         super.onEnable();
     }
 
@@ -80,12 +82,14 @@ public final class MoreTraining extends JavaPlugin implements Listener{
         Player p = e.getPlayer();
         UUID pu = p.getUniqueId();
         Material b = e.getBlock().getType();
-        FilePath(p, pu,"Mining",1);
+        Material mh = p.getInventory().getItemInMainHand().getType();
+        int ToolTier = new BlockList().Point(mh);
+        FilePath(p, pu,"Mining",ToolTier);
         if(p.getScoreboardTags().contains("Tag_SoundMenuName_on")){
             p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 2.0f);
         }
         if(p.getScoreboardTags().contains("Tag_TextMenuName_on")){
-            p.sendMessage("スコア" + ChatColor.AQUA + "+" + 1 + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Mining") + ")");
+            p.sendMessage("スコア" + ChatColor.AQUA + "+" + ToolTier + ChatColor.GRAY + "(合計" + option_item.file_out(p.getUniqueId(), "Mining") + ")");
         }
     }
 
