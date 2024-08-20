@@ -1,9 +1,6 @@
 package net.cherryleaves.moreTraining;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -45,7 +42,7 @@ public class option_item implements Listener {
         if (i == null) {
             return;
         }
-        if(Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー")){
+        if(Objects.requireNonNull(i).getType().equals(Material.NETHER_STAR) && i.getItemMeta().getDisplayName().equals("メニュー") && !p.getGameMode().equals(GameMode.CREATIVE)){
             e.setCancelled(true);
         }
         else if(e.getView().getTitle().equals(ChatColor.DARK_AQUA + "メニュー <詳しくは各アイテムクリック>")) {
